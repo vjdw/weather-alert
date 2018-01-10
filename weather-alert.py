@@ -24,7 +24,7 @@ try:
 
   for forecast in forecastResponse.json().get('list'):
     forecastMinTempKelvin = int(forecast['main']['temp_min'])
-    if forecastMinTempKelvin < minTempThresholdKelvin:
+    if forecastMinTempKelvin <= minTempThresholdKelvin:
       minTempThresholdHit = True
       forecastMinTempCelsius = round(forecastMinTempKelvin - zeroCelsiusInKelvin, 1)
       forecastDt = int(forecast['dt'])
