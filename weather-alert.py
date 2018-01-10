@@ -17,7 +17,7 @@ minTempThresholdKelvin = zeroCelsiusInKelvin + float(args.minTemp)
 minTempThresholdHit = False
 
 try:
-  apiKey = 'xxxx'
+  apiKey = 'a4bffb33bb8ef59165086204d8fd3db8'
   cityId = '2638580'
   forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?id={}&APPID={}'.format(cityId, apiKey)
   forecastResponse = requests.get(url=forecastUrl)
@@ -28,7 +28,7 @@ try:
       minTempThresholdHit = True
       forecastMinTempCelsius = round(forecastMinTempKelvin - zeroCelsiusInKelvin, 1)
       forecastDt = int(forecast['dt'])
-      forecastDtFriendly = time.asctime(time.localtime(forecastDt))
+      forecastDtFriendly = time.strftime('%H:%M on %a, %d %b %Y', time.localtime(forecastDt))
       print('{} at {}'.format(forecastMinTempCelsius, forecastDtFriendly))
 
   if not minTempThresholdHit:
