@@ -23,11 +23,11 @@ try:
   forecastResponse = requests.get(url=forecastUrl)
 
   for forecast in forecastResponse.json().get('list'):
-    forecastDt = int(forecast['dt'])
     forecastMinTempKelvin = int(forecast['main']['temp_min'])
     if forecastMinTempKelvin < minTempThresholdKelvin:
       minTempThresholdHit = True
       forecastMinTempCelsius = round(forecastMinTempKelvin - zeroCelsiusInKelvin, 1)
+      forecastDt = int(forecast['dt'])
       forecastDtFriendly = time.asctime(time.localtime(forecastDt))
       print('{} at {}'.format(forecastMinTempCelsius, forecastDtFriendly))
 
