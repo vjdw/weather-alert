@@ -22,8 +22,6 @@ try:
   forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?id={}&APPID={}'.format(cityId, apiKey)
   forecastResponse = requests.get(url=forecastUrl)
 
-  nowDt = int(time.time())
-
   for forecast in forecastResponse.json().get('list'):
     forecastDt = int(forecast['dt'])
     forecastMinTempKelvin = int(forecast['main']['temp_min'])
